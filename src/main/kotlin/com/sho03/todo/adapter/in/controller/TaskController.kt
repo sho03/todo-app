@@ -1,7 +1,9 @@
-package dev.sho03.todo.controller
+package com.sho03.todo.adapter.`in`.controller
 
-import dev.sho03.todo.domain.Task
-import dev.sho03.todo.service.TaskService
+import dev.sho03.todo.application.domain.model.Task
+import dev.sho03.todo.port.`in`.CreateTaskUseCase
+import dev.sho03.todo.port.`in`.GetTaskUseCase
+import dev.sho03.todo.port.`in`.GetTasksUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -14,12 +16,14 @@ import java.time.LocalDate
 @RestController
 @RequestMapping("/tasks")
 class TaskController(
-    private val taskService: TaskService,
+    private val createTaskUseCase: CreateTaskUseCase,
+    private val getTaskUseCase: GetTaskUseCase,
+    private val getTasksUseCase: GetTasksUseCase,
 ) {
 
     @GetMapping
     fun getAllTasks(): ResponseEntity<List<Task>> {
-        val tasks = taskService.getAllTasks()
+        val tasks = getTasksUseCase.getAllTasks()
         return ResponseEntity.ok(tasks)
     }
 
@@ -27,7 +31,7 @@ class TaskController(
     fun getTask(
         @PathVariable id: Int
     ): ResponseEntity<Task> {
-        val task = taskService.getTask(id)
+        val task = getTaskUseCase.getTask(id)
         return ResponseEntity.ok(task)
     }
 
@@ -35,7 +39,7 @@ class TaskController(
     fun createTask(
         @RequestBody request: CreateTaskRequest
     ): ResponseEntity<Task> {
-        val createdTask = taskService.createTask(request.title, request.description, request.dueDate)
+        val createdTask = createTaskUseCase.createTask(request.title, request.description, request.dueDate)
         return ResponseEntity.ok(createdTask)
     }
 

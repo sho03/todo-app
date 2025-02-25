@@ -1,4 +1,6 @@
-package dev.sho03.todo.domain
+package com.sho03.todo.port.out
+
+import dev.sho03.todo.application.domain.model.Task
 
 interface TaskRepository {
     fun getAll(): List<Task>

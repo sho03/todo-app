@@ -1,11 +1,11 @@
-package dev.sho03.todo.persistance
+package com.sho03.todo.adapter.out.persistance
 
-import dev.sho03.todo.domain.Task
-import dev.sho03.todo.domain.TaskRepository
+import dev.sho03.todo.application.domain.model.Task
+import com.sho03.todo.port.out.TaskRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-class InMemoryTaskRepository : TaskRepository {
+class InMemoryTaskRepository : com.sho03.todo.port.out.TaskRepository {
     val map = mutableMapOf<Int, Task>()
 
     override fun getAll(): List<Task> {

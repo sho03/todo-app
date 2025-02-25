@@ -1,25 +1,18 @@
-package dev.sho03.todo.service
+package com.sho03.todo.application.domain.service
 
-import dev.sho03.todo.domain.Task
-import dev.sho03.todo.domain.TaskRepository
+import dev.sho03.todo.application.domain.model.Task
+import com.sho03.todo.port.out.TaskRepository
+import dev.sho03.todo.port.`in`.CreateTaskUseCase
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import kotlin.random.Random
 
 @Service
-class TaskService(
-    private val taskRepository: TaskRepository
-) {
+class CreateTaskService(
+    private val taskRepository: com.sho03.todo.port.out.TaskRepository
+) : CreateTaskUseCase {
 
-    fun getAllTasks(): List<Task> {
-        return taskRepository.getAll()
-    }
-
-    fun getTask(id: Int): Task {
-        return taskRepository.getById(id)
-    }
-
-    fun createTask(
+    override fun createTask(
         title: String,
         description: String,
         dueDate: LocalDate,
