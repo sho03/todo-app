@@ -1,4 +1,4 @@
-package dev.sho03.todo
+package com.sho03.todo
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

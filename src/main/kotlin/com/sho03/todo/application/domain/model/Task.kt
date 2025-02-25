@@ -1,4 +1,4 @@
-package dev.sho03.todo.domain
+package com.sho03.todo.application.domain.model
 
 import java.time.LocalDate
 
